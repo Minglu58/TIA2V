@@ -37,20 +37,67 @@ pip install git+https://github.com/openai/CLIP.git wav2clip transformers
 We create two three-modality datasets named as [URMP-VAT](https://drive.google.com/file/d/1u8dA_TwivVj83DEr74Yw_bLPcOevEHb2/view?usp=sharing).
 
 ## Download pre-trained checkpoints
-coming
+coming soon
 
 ## Sampling Procedure
 ### Sample Short Music Performance Videos
-- `data_path`: path to dataset, you can change it to `post_landscape` for Landscape-VAT dataset
+- `data_path`: path to dataset, default is `post_URMP`
 - `text_emb_model`: model to encode text, choices: `bert`, `clip`
 - `audio_emb_model`: model to encode audio, choices: `audioclip`, `wav2clip`
 - `text_stft_cond`: load text-audio-video data
 - `n_sample`: the number of videos need to be sampled
 - `run`: index for each run
-- `resolution`: resolution used in training video VQGAN procedure
+- `resolution`: resolution to extract data
 - `model_path`: the path of pre-trained checkpoint
 - `image_size`: the resolution used in training process
-- `in_channels`: the number of channels of the input image
+- `in_channels`: the number of channels of the input videos/frames
+- `diffusion_steps`: the number of steps to denoise
+- `noise_schedule`: choices: `cosine`, `linear`
+- `num_channels`: latent channels base
+- `num_res_blocks`: the number of resnet blocks in diffusion
 ```
-python scripts/sample_motion_optim.py --resolution 64 --batch_size 1 --diffusion_steps 4000 --noise_schedule cosine --num_channels 64 --num_res_blocks 2 --class_cond False --model_path saved_ckpts/diffusion_disc/model110000.pt --num_samples 50 --image_size 64 --learn_sigma True --text_stft_cond --audio_emb_model beats --data_path datasets/post_URMP --in_channels 3 --clip_denoised True --run 0
+python scripts/sample_motion_optim.py --resolution 64 --batch_size 1 --diffusion_steps 4000 --noise_schedule cosine \
+--num_channels 64 --num_res_blocks 2 --class_cond False --model_path saved_ckpts/your_model.pt \
+--num_samples 50 --image_size 64 --learn_sigma True --text_stft_cond --audio_emb_model beats --data_path datasets/post_URMP \
+--in_channels 3 --clip_denoised True --run 0
 ```
+
+## Training Procedure
+You can also train the models on customized datasets. Here we provide the command to train content and motion parts individually.
+### train content
+- `save_dir`: path to save checkpoints
+- `diffusion_steps`: the number of steps to denoise
+- `noise_schedule`: choices: `cosine`, `linear`
+- `num_channels`: latent channels base
+- `num_res_blocks`: the number of resnet blocks in diffusion
+- `class_cond`: whether using class or not
+- `image_size`: resolution of videos/images
+- `sequence_length`: the number of frames unsed in training
+- `lr`: the learning rate
+```
+python scripts/train_content.py --num_workers 8 --gpus 1 --batch_size 1 --data_path datasets/post_URMP/ \
+--save_dir saved_ckpts/your_directory_path --resolution 64 --sequence_length 16 --text_stft_cond --diffusion_steps 4000 \
+--noise_schedule cosine --lr 5e-5 --num_channels 64 --num_res_blocks 2 --class_cond False --log_interval 50 \
+--save_interval 10000 --image_size 64 --learn_sigma True --in_channels 3
+```
+### train motion
+- `save_dir`: path to save checkpoints
+- `diffusion_steps`: the number of steps to denoise
+- `noise_schedule`: choices: `cosine`, `linear`
+- `num_channels`: latent channels base
+- `num_res_blocks`: the number of resnet blocks in diffusion
+- `class_cond`: whether using class or not
+- `image_size`: resolution of videos/images
+- `sequence_length`: the number of frames unsed in training
+- `model_path`: the path of content model
+- `audio_emb_model`: model to encode audio, choices: `audioclip`, `wav2clip`
+```
+python scripts/train_temp.py --num_workers 8 --batch_size 1 --data_path datasets/post_URMP/ \
+--model_path saved_ckpts/your_content_model.pt --save_dir saved_ckpts/your_directory_path --resolution 64 \
+--sequence_length 16 --text_stft_cond --audio_emb_model beats --diffusion_steps 4000 --noise_schedule cosine \
+--num_channels 64 --num_res_blocks 2 --class_cond False --image_size 64 --learn_sigma True --in_channels 3 \
+--lr 5e-5 --log_interval 50 --save_interval 5000 --gpus 1
+```
+
+## Acknowledgements
+Our code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion).
