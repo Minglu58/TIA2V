@@ -41,9 +41,7 @@ from __future__ import print_function
 import six
 import os, sys, inspect
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-import tensorflow.compat.v1 as tf
-import tensorflow_gan as tfgan
-import tensorflow_hub as hub
+
 import torch
 import argparse
 from glob import glob
@@ -73,11 +71,11 @@ def preprocess(videos, target_resolution):
             the range [-1,1]
     """
     videos_shape = videos.shape.as_list()
-    all_frames = tf.reshape(videos, [-1] + videos_shape[-3:])
-    resized_videos = tf.image.resize_bilinear(all_frames, size=target_resolution)
+    all_frames = torch.reshape(videos, [-1] + videos_shape[-3:])
+    resized_videos = torch.image.resize_bilinear(all_frames, size=target_resolution)
     target_shape = [videos_shape[0], -1] + [3] + list(target_resolution) 
-    output_videos = tf.reshape(resized_videos, target_shape)
-    scaled_videos = 2. * tf.cast(output_videos, tf.float32) / 255. - 1
+    output_videos = torch.reshape(resized_videos, target_shape)
+    scaled_videos = 2. * torch.cast(output_videos, torch.float32) / 255. - 1
     return scaled_videos
 
 
