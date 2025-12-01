@@ -106,3 +106,19 @@ python scripts/train_temp.py --num_workers 8 --batch_size 1 --data_path datasets
 
 ## Acknowledgements
 Our code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion).
+
+
+## Citation
+If you find our work useful, please consider citing our paper.
+```
+@article{zhao2025tia2v,
+  title={TIA2V: Video generation conditioned on triple modalities of text--image--audio},
+  author={Zhao, Minglu and Wang, Wenmin and Zhang, Rui and Jia, Haomei and Chen, Qi},
+  journal={Expert Systems with Applications},
+  volume={268},
+  pages={126278},
+  year={2025},
+  publisher={Elsevier}
+}
+```
+
