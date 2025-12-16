@@ -105,7 +105,7 @@ python scripts/train_temp.py --num_workers 8 --batch_size 1 --data_path datasets
 ```
 
 ## Acknowledgements
-Our code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion).
+Our code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion). Thanks to the authors for their significant contributions.
 
 
 ## Citation
