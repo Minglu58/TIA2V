@@ -40,9 +40,9 @@ We create three three-modality datasets named as [URMP-VAT](https://studentmust-
 ## Download pre-trained checkpoints
 | Dataset | TIA | Diffusion |
 | --------------- | --------------- | --------------- |
-| URMP-VAT | [URMP-VAT_tia.pt](https://drive.google.com/file/d/1T_SovYzSnyn43KLnNkSb49tJ9Ju3RLkO/view?usp=sharing) | [URMP-VAT_diffusion.pt](https://drive.google.com/file/d/1Hg7A5eigOZ_TzM5hfJqGiau04usi3k8-/view?usp=drive_link)
-| Landscape-VAT | [Landscape-VAT_tia.pt](https://drive.google.com/file/d/1yU-_angGLe9a2feLMJq2n20WXaQoagno/view?usp=drive_link) | [Landscape-VAT_diffusion.pt](https://drive.google.com/file/d/1aYoXYxJpcFpP7Eq5kwCusXDxWl-LPMAr/view?usp=drive_link)
-| AudioSet-Drums-VAT | [AudioSet-Drums-VAT_tia.pt](https://drive.google.com/file/d/1vMAUcTSyUYqeFgTm9yKu09UhJHl3JzSx/view?usp=drive_link) | [AudioSet-Drums-VAT_diffusion.pt](https://drive.google.com/file/d/1tg7pCLF_TvXRwqyfcIRdUpluJsXAO4lj/view?usp=drive_link)
+| URMP-VAT | [URMP-VAT_tia.pt](https://drive.google.com/file/d/1T_SovYzSnyn43KLnNkSb49tJ9Ju3RLkO/view?usp=sharing) | [URMP-VAT_diffusion.pt](https://drive.google.com/file/d/1Hg7A5eigOZ_TzM5hfJqGiau04usi3k8-/view?usp=sharing)
+| Landscape-VAT | [Landscape-VAT_tia.pt](https://drive.google.com/file/d/1yU-_angGLe9a2feLMJq2n20WXaQoagno/view?usp=sharing) | [Landscape-VAT_diffusion.pt](https://drive.google.com/file/d/1aYoXYxJpcFpP7Eq5kwCusXDxWl-LPMAr/view?usp=sharing)
+| AudioSet-Drums-VAT | [AudioSet-Drums-VAT_tia.pt](https://drive.google.com/file/d/1vMAUcTSyUYqeFgTm9yKu09UhJHl3JzSx/view?usp=sharing) | [AudioSet-Drums-VAT_diffusion.pt](https://drive.google.com/file/d/1tg7pCLF_TvXRwqyfcIRdUpluJsXAO4lj/view?usp=sharing)
 
 ## Sampling Procedure
 ### Sample Short Music Performance Videos
