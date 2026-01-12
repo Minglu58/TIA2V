@@ -122,17 +122,17 @@ class TrainLoop():
             self.ddp_model = self.model
         
         # first stage model
-        self.init_first_stage_from_ckpt()
+        #self.init_first_stage_from_ckpt()
         
         
-    def init_first_stage_from_ckpt(self):
-        self.first_stage_model = load_vqgan(self.vqgan_ckpt)
-        for p in self.first_stage_model.parameters():
-            p.requires_grad = False
-        self.first_stage_model.codebook._need_init = False
-        self.first_stage_model.eval()
-        self.first_stage_model.train = disabled_train
-        self.first_stage_vocab_size = self.first_stage_model.codebook.n_codes
+    #def init_first_stage_from_ckpt(self):
+    #    self.first_stage_model = load_vqgan(self.vqgan_ckpt)
+    #    for p in self.first_stage_model.parameters():
+    #        p.requires_grad = False
+    #    self.first_stage_model.codebook._need_init = False
+    #    self.first_stage_model.eval()
+    #    self.first_stage_model.train = disabled_train
+    #    self.first_stage_vocab_size = self.first_stage_model.codebook.n_codes
         
     def _load_and_sync_parameters(self):
         resume_checkpoint = find_resume_checkpoint() or self.resume_checkpoint
