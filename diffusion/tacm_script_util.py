@@ -3,8 +3,8 @@ import inspect
 
 from . import tacm_gaussian_diffusion as gd
 from .respace import SpacedDiffusion, space_timesteps
-from .tacm_unet_diffusion import SuperResModel, UNetModel, EncoderUNetModel
-# from .tacm_unet import SuperResModel, UNetModel, EncoderUNetModel
+# from .tacm_unet_diffusion import SuperResModel, UNetModel, EncoderUNetModel
+from .tacm_unet import SuperResModel, UNetModel, EncoderUNetModel
 
 
 NUM_CLASSES = 1000
